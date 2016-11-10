@@ -4,8 +4,18 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node build/lib/test.js",
+    "build": "flow lib/ && flow-remove-types ./lib/* --out-dir ./build/",
+    "dev": "nodemon -w \"./lib\" -x \"npm run build && npm start\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Sergey Sova <i.am@lestad.net> (https://lestad.top)",
-  "license": "MIT"
+  "license": "GPL-3.0",
+  "dependencies": {
+    "flow-bin": "^0.34.0"
+  },
+  "devDependencies": {
+    "flow-remove-types": "^1.0.5",
+    "nodemon": "^1.11.0"
+  }
 }
