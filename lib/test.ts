@@ -1,20 +1,16 @@
 
-// @flow
+type ChainFunction = (message: Message, data: Object) => Object
 
-type ChainFunction = (message: Message, data: mixed) => mixed
-
-
-const text = Symbol('text')
 class Message {
 
-  [text]: string
+  private messageText: string
 
   constructor(messageText: string) {
-    this[text] = messageText
+    this.messageText = messageText
   }
 
   text(): string {
-    return this[text]
+    return this.messageText
   }
 }
 
@@ -46,14 +42,14 @@ scope.chain(
 
 
 function hello(name: string) {
-  return (message: Message, data) => {
+  return (message: Message, data: any) => {
     console.log(name, message.text(), data)
     return Object.assign({}, data, { name })
   }
 }
 
 function test() {
-  return (message: Message, data) => {
+  return (message: Message, data: any) => {
     console.log('[[test]]', message, data)
     return Object.assign({}, data, { test: true })
   }
